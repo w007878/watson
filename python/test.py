@@ -4,8 +4,8 @@ import scipy
 
 n = 10
 t = np.array(range(1, 30), np.float32) / 29
-T = tf.Constant(np.transpose(np.repeat([t], n, axis=0)))
-j = tf.Constant(np.array(range(n)))
+T = tf.constant(np.transpose(np.repeat([t], n, axis=0)))
+j = tf.constant(np.array(range(n)))
 
 def Waston():
     x = tf.placeholder(tf.float32, [n])
