@@ -9,7 +9,7 @@ j = tf.constant(np.array(range(n)), tf.float32)
 
 def Waston():
     x = tf.Variable(np.zeros(n), tf.float32)
-    f = tf.reduce_sum((j * (T ** (j - 1)) * x[0:29] - ((T ** j) * x[0:29]) ** 2 - 1) ** 2)
+    f = tf.reduce_sum((j * (T ** (j - 1)) * x[0:29] - ((T ** j) * x[0:29]) ** 2 - 1) ** 2, tf.float32)
     f += x[0] ** 2 + (x[1] - x[0] ** 2 - 1) ** 2
     return f
 
