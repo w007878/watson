@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     x0 = tf.Variable(np.zeros(n))
     f = Waston()
-    train_step = AdamOptimizer(1e-4).minimize(f)
+    train_step = tf.train.AdamOptimizer(1e-4).minimize(f)
     sess.run(tf.globle_variables_initializer())
     sess.run(train_step, feed_dict = {x:x0})
     print f.eval(sess, feed_dict={x:x0})
