@@ -4,12 +4,12 @@ This repo is the first homework for SYSU course _Numerical Optimization Method_ 
 
 The working environment is as follows
 
-- Windows 8.1 Home Basic
-- Ubuntu 16.04 LTS
-- Mathwork MATLAB 2016b
-- Mathwork MATLAB 2014b
-- Python 2.7.13
-- Tensorflow 1.4.0-dev
+- Windows 8.1 Home Basic (local)
+- Ubuntu 16.04 LTS (server)
+- Mathwork MATLAB 2016b (local)
+- Mathwork MATLAB 2014b (server)
+- Python 2.7
+- Tensorflow 1.4.0
 - Numpy 1.13.3
 
 All the MATLAB functions are in the root directory because it is more convenient to call them.
@@ -21,5 +21,9 @@ It will be a report for the project when I finish all of the work. It will also 
 The work is still under construction.
 
 Some problems are still pending.
+
+----
+
+The file python/test.py is written in TensorFlow in order to check the minimize value.
 
 by _Snowyjone Mo_.

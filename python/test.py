@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 import scipy
 
-n = 10
+n = input()
 t = np.array(range(1, 30), np.float64) / 29
 T = tf.constant(np.transpose(np.repeat([t], n, axis=0)))
 j = tf.constant(np.array(range(n)), tf.float64)
