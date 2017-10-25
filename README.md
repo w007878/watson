@@ -9,7 +9,8 @@ The working environment is as follows
 - Mathwork MATLAB 2016b
 - Mathwork MATLAB 2014b
 - Python 2.7.13
-- Tensorflow 1.4.1-dev
+- Tensorflow 1.4.0-dev
+- Numpy 1.13.3
 
 All the MATLAB functions are in the root directory because it is more convenient to call them.
 
