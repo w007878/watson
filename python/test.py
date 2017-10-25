@@ -19,6 +19,6 @@ if __name__ == '__main__':
 
     f = Waston()
     train_step = tf.train.AdamOptimizer(1e-4).minimize(f)
-    sess.run(tf.globle_variables_initializer())
+    sess.run(tf.global_variables_initializer())
     sess.run(train_step, feed_dict={})
     print f.eval(sess, feed_dict={})
