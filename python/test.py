@@ -26,4 +26,4 @@ if __name__ == '__main__':
     print f.eval(session=sess, feed_dict={})
 
     sess.run(train_step, feed_dict={})
-    print f.eval(session=sess, feed_dict={})
+    print f.eval(session=sess, feed_dict={}), x.eval(session=sess, feed_dict={})
