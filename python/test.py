@@ -3,13 +3,13 @@ import numpy as np
 import scipy
 
 n = 10
-t = np.array(range(1, 30), np.float32) / 29
+t = np.array(range(1, 30), np.float64) / 29
 T = tf.constant(np.transpose(np.repeat([t], n, axis=0)))
-j = tf.constant(np.array(range(n)), tf.float32)
+j = tf.constant(np.array(range(n)), tf.float64)
 
 def Waston():
-    x = tf.Variable(np.zeros(n), tf.float32)
-    f = tf.reduce_sum((j * (T ** (j - 1)) * x[0:29] - ((T ** j) * x[0:29]) ** 2 - 1) ** 2, tf.float32)
+    x = tf.Variable(np.zeros(n), tf.float64)
+    f = tf.reduce_sum((j * (T ** (j - 1)) * x[0:29] - ((T ** j) * x[0:29]) ** 2 - 1) ** 2, tf.float64)
     f += x[0] ** 2 + (x[1] - x[0] ** 2 - 1) ** 2
     return f
 
