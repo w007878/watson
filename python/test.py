@@ -24,11 +24,20 @@ if __name__ == '__main__':
     sess = tf.Session()
 
     fval, xmin = Waston()
-    train_step = tf.train.GradientDescentOptimizer(0.001, False).minimize(fval)
+    global_step = tf.Variable(0, dtype=tf.int64, trainable=False)
+
+    # train_step = tf.train.GradientDescentOptimizer(0.0001).minimize(fval)
+    # train_step = tf.train.AdagradDAOptimizer(0.001, global_step).minimize(fval)
+    train_step = tf.train.AdamOptimizer(0.001).minimize(fval)
+
     sess.run(tf.global_variables_initializer())
     print fval.eval(session=sess, feed_dict={})
 
-    for i in xrange(10000):
+    for i in xrange(1000000):
+        if i % 5000 == 0:
+            print "Epoch {}".format(i)
+            print fval.eval(session=sess, feed_dict={})
+            print xmin.eval(session=sess)
         sess.run(train_step, feed_dict={})
     print fval.eval(session=sess, feed_dict={})
     print xmin.eval(session=sess)

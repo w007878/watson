@@ -168,6 +168,15 @@ A_i=\sum_{j=i}^{n}x_jt_i^{j-1}\quad, B_i=\sum_{j=1}^np_jt_i^{j-1}\quad, C_i=\sum
 \[
 \sum_{i=1}^{29}\left(r_i(x)+\left(2A_iB_i+C_i\right)\alpha -B_i^2\alpha^2\right)^2+(x_1+\alpha p_1)^2+(x_2+\alpha p_2-(x_1+\alpha p_1)^2-1)^2
 \]
+
+\section{参考值}
+
+使用Tensorflow得到一些近似的局部最优解以作为参考。为了简单，我们只考虑$n$为10,15,20的情况（再多我就死了）
+
+$n=10$, 使用learning\_rate=0.0001, 迭代1000000次的GradientDescentOptimizer得到近似收敛值$2\times 10^{-5}\,(2.17652988556e-05)$
+\[
+x = [-6.106e-05\ 9.981e-01\ 3.041e-02\ 2.088e-01\ 1.767e-01\ 8.034e-02\ -1.076e-04\ -3.122e-02\ -5.505e-04\ 9.483e-02]^T
+\]
 \newpage
 \textbf{\large 警示语：以下内容在2017年10月20日的更新中被移除。}
 \vspace{10pt}
