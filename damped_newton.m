@@ -9,14 +9,14 @@ function [xmin, fval, counter_iter, counter_func, time] = damped_newton(x0, n, i
     while g' * g > epsilon
         counter_iter = counter_iter + 1;
         if counter_iter > iter_max
-            xmin = nan; fval = inf;
-            return;
+            % xmin = nan; fval = inf;
+            break;
         end
     
         [~, p] = chol(G);
         if det(G) == 0 || p ~= 0
             xmin = nan; fval = nan;
-            return;
+            break;
         end
 
         d = -inv(G) * g;
@@ -26,6 +26,10 @@ function [xmin, fval, counter_iter, counter_func, time] = damped_newton(x0, n, i
 %        [alpha, counter_func] = naive_wolfe(x, n, d, 0.01, 0.01, 0.1,counter_func);
 %        [alpha, counter_func] = naive_strong_wolfe(x, n, d, 0.01, 0.01, 0.1, counter_func);
         x = x + alpha * d;
+        if mod(counter_iter, 100) == 0
+            disp(alpha);
+            disp(d);
+        end
         [~, ~, g, G, counter_func] = watson(x, n, counter_func);
     end
     xmin = x;
