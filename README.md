@@ -24,6 +24,10 @@ Some problems are still pending.
 
 ----
 
+The files in the directory python is used to help me check the results.
+
 The file python/test.py is written in TensorFlow in order to check the minimize value.
+
+The file python/watson.py can calculate the result of Waston function for certain input.
 
 by _Snowyjone Mo_.
