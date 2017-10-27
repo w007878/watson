@@ -6,6 +6,7 @@ function [xmin, fval, counter_iter, counter_func, time] = damped_newton(x0, n, f
     
     [~, ~, g, G, counter_func] = func(x, n, counter_func);
     
+    disp(g);
     while g' * g > epsilon
         counter_iter = counter_iter + 1;
         if counter_iter > iter_max

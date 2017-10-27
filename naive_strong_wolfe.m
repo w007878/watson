@@ -8,6 +8,7 @@ function [alpha, counter_func] = naive_strong_wolfe(x, n, p, func, rho, c1, c2, 
             break;
         end
         alpha = rho * alpha;
+        % disp(alpha);
     end
 end
  

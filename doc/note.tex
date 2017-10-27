@@ -154,6 +154,8 @@ Wolfe准则
 Goldstein准则
 \[f(x_k)+(1-c)\nabla f_k^Tp_k\alpha \le f(x_k+\alpha p_k)\le f(x_k)+c\nabla f_k^T p_k\alpha\]
 
+根据前人人生的经验，我们在Aroijo, (Strong) Wolfe准则中选择$c_1=10^{-4},\,c_2=0.9$，在Goldstein中选择$c=0.5$
+
 接下来我们考虑精确线搜索问题。这就是一个最优化一个标量的算法
 \[\mathop{\arg\,\min}_\alpha f(x_k+\alpha d_k)\]
 
@@ -169,7 +171,28 @@ A_i=\sum_{j=i}^{n}x_jt_i^{j-1}\quad, B_i=\sum_{j=1}^np_jt_i^{j-1}\quad, C_i=\sum
 \sum_{i=1}^{29}\left(r_i(x)+\left(2A_iB_i+C_i\right)\alpha -B_i^2\alpha^2\right)^2+(x_1+\alpha p_1)^2+(x_2+\alpha p_2-(x_1+\alpha p_1)^2-1)^2
 \]
 
-\section{参考值}
+\section{一些简单的检测}
+
+李洽说的挺对的，应该先用一些简单的小的样例检测一下程序是否正确。于是做了一点小小的辅助程序，花掉了相当多的时间
+
+首先写了一个Python程序用来计算Watson函数的值是否正确
+
+接下来，按照\cite{More:1981:TUO:355934.355936}的建议，我实现了两个较为简单的优化函数，Rosenbrock function\cite{doi:10.1093/comjnl/3.3.175}与Freudenstein and Roth function\cite{Freudenstein:1963:NSS:321186.321200}
+
+对于Rosenbrock函数，依旧是$\sum_{i=1}^{m}r_i(x)^2$的形式，然后$m=2~n=2$并且有$r_1(x)=10(x_2-x_1^2)~~r_2(x)=1-x_1$
+取初始点$x=(1.2, 1)^T$,应当在$x=(1,1)^T$处得到极小值$f=0$。目前，对于非精确线搜索的阻尼牛顿和混合牛顿方法都得到了这个极小解。由于参数的问题，阻尼牛顿方法的Goldstein准则收敛性堪忧
+
+Freudenstein and Roth function，形式同上，但是
+\[r_1(x)=-13+x_1+((5-x_2)x_2-2)x_2~~~r_2(x)=-29+x_1+((x_2+1)x_2-14)x_2\]
+
+这个函数在点$(5,4)$有极小值$f=0$，在点$(11.41, -0.8968)$有极小值$f=48.9842$
+
+大部分算法收敛到局部极小值$f=48.9842$，而使用强Wolfe准则的算法
+
+\newpage
+\textbf{\large 警示语：以下内容在2017年10月27日的更新中被移除。}
+\vspace{10pt}
+\section*{参考值}
 
 使用Tensorflow得到一些近似的局部最优解以作为参考。为了简单，我们只考虑$n$为10,15,20的情况（再多我就死了）
 
@@ -235,4 +258,8 @@ x = [-6.106e-05\ 9.981e-01\ 3.041e-02\ 2.088e-01\ 1.767e-01\ 8.034e-02\ -1.076e-
 \end{alltt}
 
 写到这里就会发现剩下的几种代码包括最速下降阻尼牛顿修正牛顿之类的都太好写了。过两天再写。。。
+
+\newpage
+\bibliographystyle{unsrt}
+\bibliography{notebio}
 \end{document}

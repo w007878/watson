@@ -1,0 +1,19 @@
+\begin{thebibliography}{1}
+
+\bibitem{More:1981:TUO:355934.355936}
+Jorge~J. Mor{\'e}, Burton~S. Garbow, and Kenneth~E. Hillstrom.
+\newblock Testing unconstrained optimization software.
+\newblock {\em ACM Trans. Math. Softw.}, 7(1):17--41, March 1981.
+
+\bibitem{doi:10.1093/comjnl/3.3.175}
+H.~H. Rosenbrock.
+\newblock An automatic method for finding the greatest or least value of a
+  function.
+\newblock {\em The Computer Journal}, 3(3):175--184, 1960.
+
+\bibitem{Freudenstein:1963:NSS:321186.321200}
+Ferdinand Freudenstein and Bernhard Roth.
+\newblock Numerical solution of systems of nonlinear equations.
+\newblock {\em J. ACM}, 10(4):550--556, October 1963.
+
+\end{thebibliography}

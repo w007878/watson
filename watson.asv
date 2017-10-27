@@ -11,32 +11,36 @@ function [f, r, grad, H, counter] = watson(x, n, counter_init)
 
     f = r' * r;
     
+    
     tmp1 = 4 * T1' * (r(1:29) .* (T1 * x));
+    disp(size(T2));
+    disp(size(r));
+    size(T2)
+    size(r(1:29))
     tmp2 = 2 * (0:n-1)' .* (T2' * r(1:29));
-
+    disp(tmp1);
+    disp(tmp2);
+    
     grad = tmp2 - tmp1;
     grad(1) = grad(1) + 2 * r(30) - 4 * x(1) * r(31);
     grad(2) = grad(2) + 2 * r(31);
-   
+    
+%    C = T1 * x;
+%    disp(C);
+%    disp(T2);
+%    disp(size(C))
+%    prx = (0:28)' .* T2 - 2 * T1  .* C;
+%    prz = [prx; [1, zeros(1, n-1)]; [(-2) * x(1), 1, zeros(1, n-2)]];
+%    grad = 2 * prz' * r;
+    
     H = zeros(n, n);
-    for a = 1:n
-        for b = 1:n           
+%    for a = 1:n
+%        for b = 1:n           
 %            H(a, b) = 2 * prz(:, b)' * prz(:, a) - 4 * (power(t, a + b - 2) * r(1:29));
 %            if (a == 1) && (b == 1) 
 %                H(a, b) = H(a, b) - 4 * r(31);
 %            end
-            H(a, b) = 2 * r(1:29)' * power(t', a + b - 2);
-            for i = 1:m
-                w1 = (a - 1) * t(i)^(a - 2);
-                w2 = (b - 1) * t(i)^(b - 2);
-                for j = 1:n
-                    w1 = w1 - 2 * x(j) * t(i)^(j + a - 2);
-                    w2 = w2 - 2 * x(j) * t(i)^(j + b - 2);
-                end
-                H(a, b) = H(a, b) + w1 * w2;
-                
-            end
-        end
-    end
+%        end
+%    end
     counter = counter_init + 1;
 end
