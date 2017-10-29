@@ -1,5 +1,5 @@
-function [alpha, counter, counter_func] = naive_goldstein(x, n, p, func, rho, c, ~, counter_init)
-    alpha = 1;
+function [alpha, counter, counter_func] = naive_goldstein(x, n, p, func, rho, c, ~, counter_init, alpha0)
+    alpha = alpha0;
     counter_func = 0;
     [f_k, ~, g_k, ~, counter_func] = func(x, n, counter_func);
     while true
@@ -8,6 +8,9 @@ function [alpha, counter, counter_func] = naive_goldstein(x, n, p, func, rho, c,
             break;
         end
         alpha = rho * alpha;
+        if alpha < 1e-6 
+            break; 
+        end;        
     end
     counter = counter_init + 1;
 end

@@ -1,5 +1,5 @@
-function [alpha, counter_func] = naive_armijo(x, n, p, func, rho, c, ~, counter_init)
-    alpha = 1;
+function [alpha, counter_func] = naive_armijo(x, n, p, func, rho, c, ~, counter_init, alpha0)
+    alpha = alpha0;
     counter_func = counter_init;
     [f_k, ~, g_k, ~, counter_func] = func(x, n, counter_func);
     while true
@@ -8,5 +8,8 @@ function [alpha, counter_func] = naive_armijo(x, n, p, func, rho, c, ~, counter_
             break;
         end
         alpha = rho * alpha;
+        if alpha < 1e-6
+            break; 
+        end;
     end
 end

@@ -13,30 +13,22 @@ function [f, r, grad, H, counter] = watson(x, n, counter_init)
     
     tmp1 = 4 * T1' * (r(1:29) .* (T1 * x));
     tmp2 = 2 * (0:n-1)' .* (T2' * r(1:29));
-
+    
     grad = tmp2 - tmp1;
     grad(1) = grad(1) + 2 * r(30) - 4 * x(1) * r(31);
     grad(2) = grad(2) + 2 * r(31);
-   
+    
     H = zeros(n, n);
+    prz = (0:n-1) .* T2 - 2 * (T1 * x) .* T1;
     for a = 1:n
-        for b = 1:n           
-%            H(a, b) = 2 * prz(:, b)' * prz(:, a) - 4 * (power(t, a + b - 2) * r(1:29));
-%            if (a == 1) && (b == 1) 
-%                H(a, b) = H(a, b) - 4 * r(31);
-%            end
-            H(a, b) = 2 * r(1:29)' * power(t', a + b - 2);
-            for i = 1:m
-                w1 = (a - 1) * t(i)^(a - 2);
-                w2 = (b - 1) * t(i)^(b - 2);
-                for j = 1:n
-                    w1 = w1 - 2 * x(j) * t(i)^(j + a - 2);
-                    w2 = w2 - 2 * x(j) * t(i)^(j + b - 2);
-                end
-                H(a, b) = H(a, b) + w1 * w2;
-                
-            end
+        for b = 1:n
+            H(a, b) = 2 * prz(:, a)' * prz(:, b) + 2 * (-2 * power(t, a + b - 2)) * r(1:29);
         end
     end
+    
+    H(1, 1) = H(1, 1) + 2 + 4 + 12 * x(1)^2 - 4 * x(2);
+    H(1, 2) = H(1, 2) - 4 * x(1);
+    H(2, 1) = H(2, 1) - 4 * x(1);
+    H(2, 2) = H(2, 2) + 2;
     counter = counter_init + 1;
 end

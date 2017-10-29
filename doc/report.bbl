@@ -1,0 +1,12 @@
+\begin{thebibliography}{1}
+
+\bibitem{高立2014数}
+高立.
+\newblock 数 值 最 优 化 方 法, 2014.
+
+\bibitem{More:1981:TUO:355934.355936}
+Jorge~J. Mor{\'e}, Burton~S. Garbow, and Kenneth~E. Hillstrom.
+\newblock Testing unconstrained optimization software.
+\newblock {\em ACM Trans. Math. Softw.}, 7(1):17--41, March 1981.
+
+\end{thebibliography}

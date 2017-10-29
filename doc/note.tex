@@ -88,47 +88,7 @@ x_2=
 
 特殊处理一下后面两位
 
-该算偏导数了，比较简单，这里略去。
-
-Hesse矩阵应该更简单了。但是我决定放弃优美的写法。
-\[
-\frac{\partial^2 f}{\partial x_b \partial x_a}=2\sum_{i=1}^{m}\left(\frac{\partial r_i}{\partial x_b}\,\frac{\partial r_i}{\partial x_a}+\frac{\partial^2r_i}{\partial x_b\,\partial x_a}\,r_i(x)\right)
-\]
-于是修了修代码。最难的部分结束。
-
-\begin{alltt}
-	01 \textcolor{keyword}{function} [f, r, grad, H, counter] = waston(x, n, counter\_init)
-	02     m = 29;
-	03     t = (1:29) ./ 29; 
-	04     T0 = repmat(t', 1, n - 1);
-	05     T0 = T0 .\^{} (0:n-2);
-	06     T1 = [T0, power(t, n - 1)'];
-	07     T2 = [zeros(m, 1), T0];
-	08     
-	09     r = T2 * (x .* (0:n-1)') - power(T1 * x, 2) - 1;
-	10     r = [r; x(1); x(2) - x(1) \^{} 2 - 1];
-	11 
-	12     f = r' * r;
-	13     
-	14     C = T1 * x;
-	15     prx = (0:28)' .* T2 - 2 * T1 .* C;
-	16     prz = [prx; [1, zeros(1, n-1)]; [-2 * x(1), 1, zeros(1, n-2)]];
-	17     size(prz)
-	18     size(r)
-	19     grad = 2 * prz' * r;
-	20     
-	21     H = zeros(n, n);
-	22     \textcolor{keyword}{for} a = 1:n
-	23         \textcolor{keyword}{for} b = 1:n
-	24             H(a, b) = 2 * prz(:, b)' * prz(:, a) - 4 * 29 * sum(power(t, a + b - 2));
-	25             \textcolor{keyword}{if} (a == 1) \&\& (b == 1) 
-	26                 H(a, b) = H(a, b) - 4;
-	27             \textcolor{keyword}{end}
-	28         \textcolor{keyword}{end}
-	29     \textcolor{keyword}{end}
-	30     counter = counter\_init + 1;
-	31 \textcolor{keyword}{end}
-\end{alltt}
+（当我在这原来什么都没说）
 
 \section{线搜索算法}
 
@@ -192,6 +152,49 @@ Freudenstein and Roth function，形式同上，但是
 \newpage
 \textbf{\large 警示语：以下内容在2017年10月27日的更新中被移除。}
 \vspace{10pt}
+
+该算偏导数了，比较简单，这里略去。
+
+Hesse矩阵应该更简单了。但是我决定放弃优美的写法。
+\[
+\frac{\partial^2 f}{\partial x_b \partial x_a}=2\sum_{i=1}^{m}\left(\frac{\partial r_i}{\partial x_b}\,\frac{\partial r_i}{\partial x_a}+\frac{\partial^2r_i}{\partial x_b\,\partial x_a}\,r_i(x)\right)
+\]
+于是修了修代码。最难的部分结束。
+
+\begin{alltt}
+	01 \textcolor{keyword}{function} [f, r, grad, H, counter] = waston(x, n, counter\_init)
+	02     m = 29;
+	03     t = (1:29) ./ 29; 
+	04     T0 = repmat(t', 1, n - 1);
+	05     T0 = T0 .\^{} (0:n-2);
+	06     T1 = [T0, power(t, n - 1)'];
+	07     T2 = [zeros(m, 1), T0];
+	08     
+	09     r = T2 * (x .* (0:n-1)') - power(T1 * x, 2) - 1;
+	10     r = [r; x(1); x(2) - x(1) \^{} 2 - 1];
+	11 
+	12     f = r' * r;
+	13     
+	14     C = T1 * x;
+	15     prx = (0:28)' .* T2 - 2 * T1 .* C;
+	16     prz = [prx; [1, zeros(1, n-1)]; [-2 * x(1), 1, zeros(1, n-2)]];
+	17     size(prz)
+	18     size(r)
+	19     grad = 2 * prz' * r;
+	20     
+	21     H = zeros(n, n);
+	22     \textcolor{keyword}{for} a = 1:n
+	23         \textcolor{keyword}{for} b = 1:n
+	24             H(a, b) = 2 * prz(:, b)' * prz(:, a) - 4 * 29 * sum(power(t, a + b - 2));
+	25             \textcolor{keyword}{if} (a == 1) \&\& (b == 1) 
+	26                 H(a, b) = H(a, b) - 4;
+	27             \textcolor{keyword}{end}
+	28         \textcolor{keyword}{end}
+	29     \textcolor{keyword}{end}
+	30     counter = counter\_init + 1;
+	31 \textcolor{keyword}{end}
+\end{alltt}
+
 \section*{参考值}
 
 使用Tensorflow得到一些近似的局部最优解以作为参考。为了简单，我们只考虑$n$为10,15,20的情况（再多我就死了）

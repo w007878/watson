@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/W32TeX) (preloaded format=xelatex 2016.4.6)  28 OCT 2017 02:56
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/W32TeX) (preloaded format=xelatex 2016.4.6)  29 OCT 2017 19:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./note.tex
-(./note.tex
+**./report.tex
+(./report.tex
 LaTeX2e <2016/03/31>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (f:/texlive/2015/texmf-dist/tex/latex/base/article.cls
@@ -1216,8 +1216,8 @@ Package color Info: Driver file: xetex.def on input line 143.
 (f:/texlive/2015/texmf-dist/tex/latex/preprint/fullpage.sty
 Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip62
-) (./note.aux)
-\openout1 = `note.aux'.
+) (./report.aux)
+\openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
@@ -1339,76 +1339,18 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 
 [1
 
-] [2] [3] [4]
-\g__fontspec_family_FangSong_int=\count150
-.................................................
-. fontspec info: "no-font-shape"
-. 
-. Could not resolve font FangSong/I (it probably doesn't exist).
-.................................................
-.................................................
-. fontspec info: "no-font-shape"
-. 
-. Could not resolve font FangSong/BI (it probably doesn't exist).
-.................................................
-.................................................
-. fontspec info: "no-font-shape"
-. 
-. Could not resolve font FangSong/I (it probably doesn't exist).
-.................................................
-LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 164
-.
- (f:/texlive/2015/texmf-dist/tex/latex/euenc/eu1lmtt.fd
-File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-.................................................
-. fontspec info: "defining-font"
-. 
-. Font family 'FangSong(0)' created for font 'FangSong' with options
-. [Script={CJK},AutoFakeBold={4}].
-. 
-. This font family consists of the following NFSS series/shapes:
-. - 'normal' (m/n) with NFSS spec.:
-. <->"FangSong/OT:script=hani;language=DFLT;"
-. - 'small caps'  (m/sc) with NFSS spec.: - 'bold' (bx/n) with NFSS spec.:
-. <->"FangSong/OT:script=hani;language=DFLT;embolden=4;"
-. - 'bold small caps'  (bx/sc) with NFSS spec.: 
-.................................................
+] (./report.toc)
+\tf@toc=\write3
+\openout3 = `report.toc'.
 
-[5]
-Overfull \hbox (131.61783pt too wide) detected at line 205
-\OML/cmm/m/it/10.95 x \OT1/cmr/m/n/10.95 = [\OMS/cmsy/m/n/10.95 ^^@\OT1/cmr/m/n
-/10.95 6\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 106\OML/cmm/m/it/10.95 e \OMS/c
-msy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 05 9\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.9
-5 981\OML/cmm/m/it/10.95 e \OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 01 3\OML/
-cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 041\OML/cmm/m/it/10.95 e \OMS/cmsy/m/n/10.95
- ^^@ \OT1/cmr/m/n/10.95 02 2\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 088\OML/cmm
-/m/it/10.95 e \OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 01 1\OML/cmm/m/it/10.9
-5 :\OT1/cmr/m/n/10.95 767\OML/cmm/m/it/10.95 e \OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr
-/m/n/10.95 01 8\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 034\OML/cmm/m/it/10.95 e
- \OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 02  \OMS/cmsy/m/n/10.95 ^^@ \OT1/cm
-r/m/n/10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 076\OML/cmm/m/it/10.95 e \
-OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 04  \OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr/
-m/n/10.95 3\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 122\OML/cmm/m/it/10.95 e \OM
-S/cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 02  \OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr/m/
-n/10.95 5\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 505\OML/cmm/m/it/10.95 e \OMS/
-cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 04 9\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.
-95 483\OML/cmm/m/it/10.95 e \OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 02][]
- []
-
-[6]
-LaTeX Font Info:    Font shape `EU1/SimSun(0)/m/sl' in size <10.95> not availab
-le
-(Font)              Font shape `EU1/SimSun(0)/m/it' tried instead on input line
- 223.
- [7] [8] (./note.bbl) [9] (./note.aux) ) 
+ [2] (./report.bbl) [3] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 20728 strings out of 493632
- 421160 string characters out of 6147907
- 399520 words of memory out of 5000000
- 23935 multiletter control sequences out of 15000+600000
- 8504 words of font info for 57 fonts, out of 8000000 for 9000
+ 20559 strings out of 493632
+ 413993 string characters out of 6147907
+ 390519 words of memory out of 5000000
+ 23774 multiletter control sequences out of 15000+600000
+ 7640 words of font info for 51 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 65i,9n,78p,10433b,829s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 65i,6n,78p,10435b,269s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on note.pdf (9 pages).
+Output written on report.pdf (3 pages).
