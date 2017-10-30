@@ -1,0 +1,40 @@
+\contentsline {section}{\numberline {1}问题的分析与重述}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}环境与假设}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Watson 函数的定义与计算}{4}{subsection.1.2}
+\contentsline {section}{\numberline {2}测试环节}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}三个测试函数}{6}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Rosenbrock function}{6}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Freudenstein-and-Roth function}{6}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}Powell-badly-scaled function}{6}{subsubsection.2.1.3}
+\contentsline {subsection}{\numberline {2.2}辅助软件检测}{7}{subsection.2.2}
+\contentsline {section}{\numberline {3}线搜索程序}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}定步长}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}精确线搜索}{7}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}非精确线搜索}{7}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Arojio Condition}{8}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Wolfe Condition}{8}{subsubsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.3}Strong Wolfe Condition}{8}{subsubsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.4}Goldstein Condition}{8}{subsubsection.3.3.4}
+\contentsline {section}{\numberline {4}优化算法}{8}{section.4}
+\contentsline {subsection}{\numberline {4.1}阻尼牛顿法}{8}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}修正牛顿法}{9}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}拟牛顿方法}{9}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}SR1公式}{9}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}DFP公式}{10}{subsubsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.3}BFGS公式}{10}{subsubsection.4.3.3}
+\contentsline {section}{\numberline {5}实验与结果}{10}{section.5}
+\contentsline {subsection}{\numberline {5.1}文件函数清单}{10}{subsection.5.1}
+\contentsline {paragraph}{线搜索程序}{10}{section*.2}
+\contentsline {paragraph}{函数程序}{10}{section*.3}
+\contentsline {paragraph}{优化程序}{10}{section*.4}
+\contentsline {subsection}{\numberline {5.2}用检验函数检验}{10}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}对比优化方法}{11}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}固定步长与精确线搜索}{11}{subsubsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.2}Arojio准则}{11}{subsubsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.3}Strong Wolfe准则}{11}{subsubsection.5.3.3}
+\contentsline {subsubsection}{\numberline {5.3.4}Goldstein准则}{12}{subsubsection.5.3.4}
+\contentsline {section}{\numberline {6}结论}{13}{section.6}
+\contentsline {section}{\numberline {7}后记}{13}{section.7}
+\contentsline {subsection}{\numberline {7.1}需要改进的实验内容}{13}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}实验过程}{13}{subsection.7.2}
+\contentsline {part}{参考文献}{15}{subsection.7.2}

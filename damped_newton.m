@@ -29,11 +29,11 @@ function [xmin, fval, counter_iter, counter_func, time] = damped_newton(x0, n, f
         d = -inv(G) * g;
 %        [alpha, counter_func] = acc(x, n, d, counter_func);
 %        [alpha, counter_func] = naive_armijo(x, n, d, func, 0.99, 1e-4, 0, counter_func, 1);
-%        [alpha, counter_func] = naive_goldstein(x, n, d, func, 0.99, 0.25, 0, counter_func, 1);
+        [alpha, counter_func] = naive_goldstein(x, n, d, func, 0.99, 0.25, 0, counter_func, 1);
 %        [alpha, counter_func] = naive_wolfe(x, n, d, func, 0.99, 1e-4, 0.9, counter_func, 1);
 %        [alpha, counter_func] = naive_strong_wolfe(x, n, d, func, 0.99, 1e-4, 0.9, counter_func, 1);
         
-        alpha = 1e-3;
+%        alpha = 1e-3;  
         x = x + alpha * d;
         [~, ~, g, G, counter_func] = func(x, n, counter_func);
     end

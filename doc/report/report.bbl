@@ -1,0 +1,84 @@
+\begin{thebibliography}{10}
+
+\bibitem{高立2014数}
+高立.
+\newblock 数 值 最 优 化 方 法, 2014.
+
+\bibitem{More:1981:TUO:355934.355936}
+Jorge~J. Mor{\'e}, Burton~S. Garbow, and Kenneth~E. Hillstrom.
+\newblock Testing unconstrained optimization software.
+\newblock {\em ACM Trans. Math. Softw.}, 7(1):17--41, March 1981.
+
+\bibitem{dennis1996numerical}
+John~E Dennis~Jr and Robert~B Schnabel.
+\newblock {\em Numerical methods for unconstrained optimization and nonlinear
+  equations}.
+\newblock SIAM, 1996.
+
+\bibitem{doi:10.1093/comjnl/3.3.175}
+H.~H. Rosenbrock.
+\newblock An automatic method for finding the greatest or least value of a
+  function.
+\newblock {\em The Computer Journal}, 3(3):175--184, 1960.
+
+\bibitem{freudenstein1963numerical}
+Ferdinand Freudenstein and Bernhard Roth.
+\newblock Numerical solution of systems of nonlinear equations.
+\newblock {\em Journal of the ACM (JACM)}, 10(4):550--556, 1963.
+
+\bibitem{Powell1970}
+M.~J.~D. Powell.
+\newblock A hybrid method for nonlinear equations.
+\newblock In P.~Rabinowitz, editor, {\em Numerical Methods for Nonlinear
+  Algebraic Equations}. Gordon and Breach, 1970.
+
+\bibitem{gilbert1989some}
+Jean~Charles Gilbert and Claude Lemar{\'e}chal.
+\newblock Some numerical experiments with variable-storage quasi-newton
+  algorithms.
+\newblock {\em Mathematical programming}, 45(1):407--435, 1989.
+
+\bibitem{shanno1970conditioning}
+David~F Shanno.
+\newblock Conditioning of quasi-newton methods for function minimization.
+\newblock {\em Mathematics of computation}, 24(111):647--656, 1970.
+
+\bibitem{ZHANG2001269}
+Jianzhong Zhang and Chengxian Xu.
+\newblock Properties and numerical performance of quasi-newton methods with
+  modified quasi-newton equations.
+\newblock {\em Journal of Computational and Applied Mathematics}, 137(2):269 --
+  278, 2001.
+
+\bibitem{Nocedal2006NO}
+J.~Nocedal and S.~J. Wright.
+\newblock {\em Numerical Optimization}.
+\newblock Springer, New York, 2nd edition, 2006.
+
+\bibitem{ding2005investigation}
+Yang Ding, Enkeleida Lushi, and Qingguo Li.
+\newblock Investigation of quasi-newton methods for unconstrained optimization.
+\newblock {\em Simon Fraser University, Canada}, 2005.
+
+\bibitem{more1978levenberg}
+Jorge~J Mor{\'e}.
+\newblock The levenberg-marquardt algorithm: implementation and theory.
+\newblock In {\em Numerical analysis}, pages 105--116. Springer, 1978.
+
+\bibitem{ranganathan2004levenberg}
+Ananth Ranganathan.
+\newblock The levenberg-marquardt algorithm.
+\newblock {\em Tutoral on LM algorithm}, 11(1):101--110, 2004.
+
+\bibitem{Byrd1988}
+Richard~H. Byrd, Robert~B. Schnabel, and Gerald~A. Shultz.
+\newblock Approximate solution of the trust region problem by minimization over
+  two-dimensional subspaces.
+\newblock {\em Mathematical Programming}, 40(1):247--263, Jan 1988.
+
+\bibitem{WEI20061156}
+Zengxin Wei, Guoyin Li, and Liqun Qi.
+\newblock New quasi-newton methods for unconstrained optimization problems.
+\newblock {\em Applied Mathematics and Computation}, 175(2):1156 -- 1188, 2006.
+
+\end{thebibliography}
