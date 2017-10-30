@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: report.aux
 The style file: unsrt.bst
 Database file #1: notebio.bib
-You've used 2 entries,
+You've used 9 entries,
             1791 wiz_defined-function locations,
-            460 strings with 3813 characters,
-and the built_in function-call counts, 375 in all, are:
-= -- 30
-> -- 15
+            510 strings with 4955 characters,
+and the built_in function-call counts, 1901 in all, are:
+= -- 173
+> -- 63
 < -- 0
-+ -- 6
-- -- 4
-* -- 25
-:= -- 64
-add.period$ -- 5
-call.type$ -- 2
-change.case$ -- 2
++ -- 25
+- -- 16
+* -- 129
+:= -- 304
+add.period$ -- 27
+call.type$ -- 9
+change.case$ -- 8
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 14
-empty$ -- 41
-format.name$ -- 4
-if$ -- 79
+cite$ -- 9
+duplicate$ -- 82
+empty$ -- 208
+format.name$ -- 16
+if$ -- 421
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 1
-newline$ -- 12
-num.names$ -- 2
-pop$ -- 8
+int.to.str$ -- 9
+missing$ -- 9
+newline$ -- 47
+num.names$ -- 11
+pop$ -- 27
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 7
+skip$ -- 29
 stack$ -- 0
-substring$ -- 19
-swap$ -- 2
+substring$ -- 142
+swap$ -- 9
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 4
-width$ -- 3
-write$ -- 21
+while$ -- 20
+width$ -- 10
+write$ -- 97

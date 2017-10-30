@@ -7,6 +7,9 @@
 \usepackage{alltt}
 \usepackage{color}
 \usepackage{fullpage}
+\usepackage{framed}
+\usepackage{hyperref}
+\usepackage{clrscode3e}
 
 \definecolor{string}{rgb}{0.7,0.0,0.0}
 \definecolor{comment}{rgb}{0.13,0.54,0.13}
@@ -16,13 +19,220 @@
 \title{数值最优化实验报告：多种线搜索算法的实现和比较}
 \author{15336134 莫凡}
 \maketitle
+\vspace{50pt}
 \begin{abstract}
-	本文是中山大学2015级信息与计算科学专业的运筹学与最优化课程作业\cite{高立2014数}。内容为使用各种基于线搜索的牛顿方法实现对Waston函数\cite{More:1981:TUO:355934.355936}的优化，
+	本文是中山大学2015级信息与计算科学专业的运筹学与最优化课程作业\cite{高立2014数}。内容为使用各种基于线搜索的牛顿方法实现对Waston函数\cite{More:1981:TUO:355934.355936}的优化。本文主要使用MATLAB R2016b实现并对比了非精确线搜索的(Strong) Wolfe准则、Wolfe准则、Goldstein准则与armijo准则，应用了最速下降法、阻尼牛顿法、LM方法、拟牛顿法（SR1公式、DFP公式、BFGS公式）测量了n=6,9,12的情形。
+	
+	为了保证算法的正确性，本文同时根据\cite{More:1981:TUO:355934.355936}的建议，实现了两个小函数用来检验算法的正确性。通过实验，发现阻尼牛顿法、LM方法、SR1公式、BFGS公式均能达到预期的收敛效果，而DFP公式和最速下降法没有在指定迭代次数内收敛。对比多种线搜索步长方法，使用强Wolfe准则是相对效果较为出色的方案。
 \end{abstract}
 \newpage
 \tableofcontents
+\newpage
+
+\section{问题的分析与重述}
+
+\subsection{环境与假设}
+本次试验主要在Windows8.1 Home Basic操作系统下，使用MATLAB R2016b完成。为了对于函数值与梯度进行检验，也同时用到了以下软件或程序包
+\begin{itemize}
+	\item R 3.3.4
+	\item Wolfram Mathematica 10
+\end{itemize}
+
+本文所涉及的所有代码与参考文献（如果能搜集到电子版）全部托管在 \url{https://github.com/w007878/watson}，以MIT协议发布
+
+本文所完成的任务，是通过基于线搜索的迭代方法，求得一个函数在定义域上的数值极小值。由于函数的复杂性，我们无法验证此极小值是否为全局最小值，只能借助文献\cite{More:1981:TUO:355934.355936}中的参考值来检验结果的正确性。
+
+为了评估一项算法，我们采用一下几个指标
+\begin{enumerate}
+	\item 算法是否在规定迭代次数内收敛，如果是，需要迭代多少步
+	\item 算法停止后（包括满足梯度条件或者迭代次数条件终止）是否得到正确的极小值
+	\item 函数调用了多少次
+	\item MATLAB的cputime
+\end{enumerate}
+
+\subsection{Watson 函数的定义与计算}
+考虑以下定义在n维空间上的实值函数\[f(x)=\sum_{i=1}^m r_i^2(x)\]其中$n,\,m,\,r_i$可以是各种各样的取值。现要实现一个优化算法，求解这个函数的极小值。
+
+本次试验的主要任务是实现\[r_i(x)=\sum_{j=2}^n\,(j-1)\,x_j\,t_i^{j-2}-\left(\sum_{j=1}^n\,x_j\,t_i^{j-1}\right)^2-1\]的情况。除此之外，还要有
+\[m=31\quad 2\le n\le 31\]
+\[t_i=\frac{i}{29}\quad 1\le i\le 29\]
+\[r_{30}(x)=x_1\quad r_{31}(x)=x_2-x_1^2-1\]
+
+这个函数被称为Watson函数\cite{dennis1996numerical}，是我们要优化的目标。首先我们要得到的就是它的梯度与Hessian矩阵的表达式。事实上，我们没有必要写出$\nabla f$关于自变量$x$的表达式，而是用$r(x)$和它的偏导数进行代替
+\[\frac{\partial f}{\partial x_k}=2\sum_{i=1}^m r_i(x)\frac{\partial r_i}{\partial x_k}\]
+
+刨除最后两项不优美的式子，我们有
+\[\frac{\partial f}{\partial x_k}=\sum_{i=1}^m\frac{\partial f}{\partial r_i}\frac{\partial r_i}{\partial x_k}\]
+其中
+\[\frac{\partial r_i}{\partial x_k}=(k-1)\,t_i^{k-2}-2\left(\sum_{j=1}^nx_jt_i^{j-1}\right)\,t_i^{k-1}\]
+
+为了在代码中计算出这个东西，我们构造两个辅助矩阵。（为简单起见，用m代替29）
+\begin{equation*}
+T_1=
+\begin{bmatrix}
+t_1^0 & t_1^1 & \cdots & t_1^{n-1}\\
+t_2^0 & & \cdots & t_2^{n-1}\\
+\cdots & \cdots &\cdots & \cdots\\
+t_m^0 & \cdots &\cdots & t_m^{n-1}
+\end{bmatrix}
+\qquad 
+T_2=
+\begin{bmatrix}
+0 & t_1^0 & t_1^1 & \cdots & t_1^{n-2}\\
+0 & t_2^0 & & \cdots & t_2^{n-2}\\
+& \cdots & \cdots &\cdots & \cdots\\
+0 & t_m^0 & \cdots &\cdots & t_m^{n-2}
+\end{bmatrix}
+\end{equation*}
+
+得到MATLAB代码
+
+\begin{framed}
+\begin{alltt}
+    01	tmp1 = 4 * T1' * (r(1:29) .* (T1 * x));
+    02	tmp2 = 2 * (0:n-1)' .* (T2' * r(1:29));
+    03	grad = tmp2 - tmp1;
+\end{alltt}
+\end{framed}
+
+然后根据$r_{30}$与$r_{31}$两项，单独处理一下$\dfrac{\partial f}{\partial x_1}$与$\dfrac{\partial f}{\partial x_2}$，梯度就计算完成了
+
+接下来是Hessian矩阵。有表达式
+\[
+\frac{\partial^2 f}{\partial x_b \partial x_a}=2\sum_{i=1}^{m}\left(\frac{\partial r_i}{\partial x_b}\,\frac{\partial r_i}{\partial x_a}+\frac{\partial^2r_i}{\partial x_b\,\partial x_a}\,r_i(x)\right)
+\]
+
+这时我们采用最简单暴力的方法单独计算每一项偏导数以得到矩阵
+
+\begin{framed}
+\begin{alltt}
+	01 prz = (0:n-1) .* T2 - 2 * (T1 * x) .* T1;
+	02 for a = 1:n
+	03     for b = 1:n
+	04 	       H(a, b)=2*prz(:,a)'*prz(:,b)+2*(-2*power(t,a+b-2))*r(1:29);
+	05     end
+	06 end
+\end{alltt}
+\end{framed}
+
+代码中的prz表示的是每个r对每个x的偏导数。
+
+通过对计算复杂度的分析，我们发现计算函数值、梯度和Hessian矩阵并没有很大的区别。同时，梯度和Hessian矩阵都需要用到相同的中间变量。而由于$n$很小，所以这点复杂度的差别基本忽略不计，于是使用一个函数同时计算出他的函数值、梯度与Hessian矩阵。
+
+\section{测试环节}
+
+\subsection{三个测试函数}
+
+为了验证优化算法的正确性，在使用它优化Watson函数之前使用几个简单的函数进行测试。
+
+这几个函数都具有\(f(x)=\sum_{i=1}^m r_i^2(x)\)的形式。
+
+\subsubsection{Rosenbrock function}
+Rosenbrock function\cite{doi:10.1093/comjnl/3.3.175}满足
+\begin{equation*}
+\begin{array}{c}
+n=2\quad m=2\\
+r_1(x)=10(x_2-x_1^2)\\
+r_2(x)=1-x_1
+\end{array}
+\end{equation*}
+
+若以点$(-1.2, 1)$作为迭代起点，这个函数应当收敛到点$(1, 1),~~f=0$
+\subsubsection{Freudenstein-and-Roth function}
+Freudenstein-and-Roth function\cite{freudenstein1963numerical}满足
+\begin{equation*}
+\begin{array}{c}
+n=2\quad m=2\\
+r_1(x)=-13+x_1+((5-x_2)x_2-2)x_2\\
+r_2(x)=-29+x_1+((x_2+1)x_2-14)x_2
+\end{array}
+\end{equation*}
+
+若以点$(0.5,-2)$作为迭代起点，可能会得到1. 局部极小值$(11.41\cdots,-0.8968\cdots),~~f=48.9842$\quad 2.全局最小值$(5,4),~~f=0$
+\subsubsection{Powell-badly-scaled function}
+Powell-badly-scaled function\cite{Powell1970}满足
+\begin{equation*}
+\begin{array}{c}
+n=2\quad m=2\\
+r_1(x)=10^4x_1x_2-1\\
+r_2(x)=e^{-x_1}+e^{-x_2}-1.0001
+\end{array}
+\end{equation*}
+若以点$(0,1)$作为迭代起点，应当得到极小值$(1.908\cdots 10^{-5},9.106\cdots),~~f=0$
+
+\subsection{辅助软件检测} 
+
+使用R语言检车Watson函数的数值，用它的numDeriv包检测MATLAB程序中计算的梯度和Hessian矩阵的数值。
+
+使用Mathematica来检查以上三个测试函数的梯度与Hessian矩阵的解析形式是否正确。
+
+\section{线搜索程序}
+
+假设$d$是线搜索下降方向（Newton/quasi-Newton 方向），我们要求得正实数$\alpha$，使得$f(x_k+\alpha d)\le f(x_k)$，然后更新$x_{k+1}=x_k+\alpha d$
+
+线搜索的程序都比较简单。所以不需要进行额外的测验。实现之后可以直接用于后文中的优化算法。
+
+\subsection{定步长}
+基本牛顿方法直接设步长$\alpha=1$。如果采用这种方式，应当将下降方向向量正则化之后再应用。
+
+\subsection{精确线搜索}
+令\[\alpha=\mathop{\arg \min}\limits_\alpha f(x_k+\alpha d)\]
+这里直接使用MATLAB内置的优化函数
+
+\subsection{非精确线搜索}
+
+我们使用最常规的“回溯法”求得非精确线搜索步长。伪代码如下
+\begin{codebox}
+\Procname{$\proc{Linear-Search}(\rho,\epsilon,\alpha_0)$}
+\li $\alpha\gets\alpha_0$
+\li \While not $\proc{Is-Satisfy-Condition}(\alpha)$
+	\Do
+\li		$\alpha\gets\rho\alpha$
+\li		\If $\alpha<\epsilon$
+\li			\Then  \Return $\alpha$		
+		\End
+	\End
+\li \Return $\alpha$
+\end{codebox}
+
+其中$\epsilon$是用于限制步长不应小于某个数的阈值，以防算法收敛速度过慢。代码中使用了$10^{-5}$。$\rho$是用于更新$\alpha$的值，在实践中取了$0.99~0.999~0.99999999$，事实证明因为下降的速度是指数，所以没有太大关系
+
+
+\subsubsection{Arojio Condition}
+\[f(x_k+\alpha p_k)\le f(x_k)+c\alpha p_k^T\]
+
+\subsubsection{Wolfe Condition}
+\[f(x_k+\alpha p_k)\le f(x_k)+c_1\alpha\nabla f_k^Tp_k\]
+\[\nabla f(x_k+\alpha_kp_k)^Tp_k \ge c_2\nabla f_k^Tp_k\]
+
+\subsubsection{Strong Wolfe Condition}
+\[f(x_k+\alpha p_k)\le f(x_k)+c_1\alpha\nabla f_k^Tp_k\]
+\[|\nabla f(x_k+\alpha p_k)^Tp_k| \le c_2|\nabla f_k^Tp|\]
+
+根据前人的经验\cite{gilbert1989some}，Arojio准则中的$c$、(Strong) Wolfe准则中的$c_1$取值$10^{-4}$，(Strong) Wolfe准则中的$c_2$取值$0.9$，可以得到更好的步长效果
+
+\subsubsection{Goldstein Condition}
+\[f(x_k)+(1-c)\nabla f_k^Tp_k\alpha \le f(x_k+\alpha p_k)\le f(x_k)+c\nabla f_k^T p_k\alpha\]
+
+
+根据\cite{shanno1970conditioning}与\cite{ZHANG2001269}的建议，使用线搜索的Newton类方法较为常用的是满足(Strong) Wolfe Condition的非精确步长。
+
+\section{优化算法}
+
+\subsection{阻尼牛顿法}
+
+牛顿方向是\[d=-G^{-1}g\]
+
+其中$G$是Hessian矩阵，$g$是梯度
+
+阻尼牛顿法是在牛顿方向上，通过先搜索得到合适的步长，然后进行迭代。迭代停止的条件为
+\section{实验与结果}
+\section{后记}
+\subsection{需要改进的实验内容}
+\subsection{实验过程}
 
 \newpage
+\addcontentsline{toc}{section}{参考文献}
 \bibliographystyle{unsrt}
 \bibliography{notebio}
 \end{document}

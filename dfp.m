@@ -11,6 +11,7 @@ function [xmin, fval, counter_iter, counter_func, time] = dfp(x0, n, func, iter_
     if min(v) < 0
         H = H + (-min(v) + 1e-5) * eye(n);
     end
+    d0 = -H * g;
     
     while g' * g > epsilon
         counter_iter = counter_iter + 1;
@@ -19,7 +20,7 @@ function [xmin, fval, counter_iter, counter_func, time] = dfp(x0, n, func, iter_
             disp('iteration terminated!');
             break;
         end
-        d = - H * g;
+        d = d0;
 %        [alpha, counter_func] = acc(x, n, d, counter_func);
 %        [alpha, counter_func] = naive_armijo(x, n, d, func, 0.99, 1e-4, 0, counter_func, 1);
 %        [alpha, counter_func] = naive_goldstein(x, n, d, func, 0.99, 0.25, 0, counter_func, 1);
@@ -37,6 +38,10 @@ function [xmin, fval, counter_iter, counter_func, time] = dfp(x0, n, func, iter_
         end
 %        disp(y);
         H = H + (s * s') / (s' * y) - ((H * y) * (y' * H)) / (y' * H * y);
+        d0 = -H * g;
+        if(norm(d0 - d) < epsilon) 
+            break;
+        end
     end
     xmin = x;
     [fval, ~, ~, ~, counter_func] = func(xmin, n, counter_func);
