@@ -11,7 +11,7 @@
 \contentsline {subsection}{\numberline {3.1}定步长}{7}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}精确线搜索}{7}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}非精确线搜索}{7}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}Arojio Condition}{8}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.1}Armijo Condition}{8}{subsubsection.3.3.1}
 \contentsline {subsubsection}{\numberline {3.3.2}Wolfe Condition}{8}{subsubsection.3.3.2}
 \contentsline {subsubsection}{\numberline {3.3.3}Strong Wolfe Condition}{8}{subsubsection.3.3.3}
 \contentsline {subsubsection}{\numberline {3.3.4}Goldstein Condition}{8}{subsubsection.3.3.4}
@@ -30,7 +30,7 @@
 \contentsline {subsection}{\numberline {5.2}用检验函数检验}{10}{subsection.5.2}
 \contentsline {subsection}{\numberline {5.3}对比优化方法}{11}{subsection.5.3}
 \contentsline {subsubsection}{\numberline {5.3.1}固定步长与精确线搜索}{11}{subsubsection.5.3.1}
-\contentsline {subsubsection}{\numberline {5.3.2}Arojio准则}{11}{subsubsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.2}Armijo准则}{11}{subsubsection.5.3.2}
 \contentsline {subsubsection}{\numberline {5.3.3}Strong Wolfe准则}{11}{subsubsection.5.3.3}
 \contentsline {subsubsection}{\numberline {5.3.4}Goldstein准则}{12}{subsubsection.5.3.4}
 \contentsline {section}{\numberline {6}结论}{13}{section.6}

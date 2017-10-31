@@ -23,7 +23,7 @@
 \begin{abstract}
 	本文是中山大学2015级信息与计算科学专业的运筹学与最优化课程作业\cite{高立2014数}。内容为使用各种基于线搜索的牛顿方法实现对Waston函数\cite{More:1981:TUO:355934.355936}的优化。本文主要使用MATLAB R2016b实现并对比了非精确线搜索的(Strong) Wolfe准则、Wolfe准则、Goldstein准则与armijo准则，应用了最速下降法、阻尼牛顿法、LM方法、拟牛顿法（SR1公式、DFP公式、BFGS公式）测量了n=6,9,12的情形。
 	
-	为了保证算法的正确性，本文同时根据\cite{More:1981:TUO:355934.355936}的建议，实现了两个小函数用来检验算法的正确性。通过实验，发现在不使用Arojio准则的条件下，6阻尼牛顿法、LM方法、SR1公式、BFGS公式均能达到预期的收敛效果，而DFP公式和最速下降法没有在指定迭代次数内收敛。阻尼牛顿法和拟牛顿法显然比拟牛顿方法具有更快的收敛速度。对比多种线搜索步长方法，使用强Wolfe准则是相对效果较为出色的方案。
+	为了保证算法的正确性，本文同时根据\cite{More:1981:TUO:355934.355936}的建议，实现了两个小函数用来检验算法的正确性。通过实验，发现在不使用Armijo准则的条件下，6阻尼牛顿法、LM方法、SR1公式、BFGS公式均能达到预期的收敛效果，而DFP公式和最速下降法没有在指定迭代次数内收敛。阻尼牛顿法和拟牛顿法显然比拟牛顿方法具有更快的收敛速度。对比多种线搜索步长方法，使用强Wolfe准则是相对效果较为出色的方案。
 \end{abstract}
 \newpage
 \tableofcontents
@@ -198,7 +198,7 @@ r_2(x)=e^{-x_1}+e^{-x_2}-1.0001
 其中$\epsilon$是用于限制步长不应小于某个数的阈值，以防算法收敛速度过慢。代码中使用了$10^{-5}$。$\rho$是用于更新$\alpha$的值，在实践中取了$0.99~0.999~0.99999999$，事实证明因为下降的速度是指数，所以没有太大关系
 
 
-\subsubsection{Arojio Condition}
+\subsubsection{Armijo Condition}
 \[f(x_k+\alpha p_k)\le f(x_k)+c\alpha p_k^T\]
 
 \subsubsection{Wolfe Condition}
@@ -209,7 +209,7 @@ r_2(x)=e^{-x_1}+e^{-x_2}-1.0001
 \[f(x_k+\alpha p_k)\le f(x_k)+c_1\alpha\nabla f_k^Tp_k\]
 \[|\nabla f(x_k+\alpha p_k)^Tp_k| \le c_2|\nabla f_k^Tp|\]
 
-根据前人的经验\cite{gilbert1989some}，Arojio准则中的$c$、(Strong) Wolfe准则中的$c_1$取值$10^{-4}$，(Strong) Wolfe准则中的$c_2$取值$0.9$，可以得到更好的步长效果
+根据前人的经验\cite{gilbert1989some}，Armijo准则中的$c$、(Strong) Wolfe准则中的$c_1$取值$10^{-4}$，(Strong) Wolfe准则中的$c_2$取值$0.9$，可以得到更好的步长效果
 
 \subsubsection{Goldstein Condition}
 \[f(x_k)+(1-c)\nabla f_k^Tp_k\alpha \le f(x_k+\alpha p_k)\le f(x_k)+c\nabla f_k^T p_k\alpha\]
@@ -327,7 +327,7 @@ SR1、DFP、BFGS方法在freudenstein\_roth函数收敛到全局最小值，阻�
 
 效果极差，在指定步数内基本不收敛
 
-\subsubsection{Arojio准则}
+\subsubsection{Armijo准则}
 
 n=6，最大迭代次数1000，$\epsilon=10^{-10}$
 
