@@ -21,7 +21,7 @@ function [xmin, fval, counter_iter, counter_func, time] = bfgs(x0, n, func, iter
         end
         d = - H * g;
 %        [alpha, counter_func] = acc(x, n, d, counter_func);
-%        [alpha, counter_func] = naive_armijo(x, n, d, func, 0.99, 1e-4, 0, counter_func, 1);
+%        [alpha, counter_func] = naive_armijo(x, n, d, func, 0.99, 1e-4, 0, counter_func, 3);
         [alpha, counter_func] = naive_goldstein(x, n, d, func, 0.99, 0.25, 0, counter_func, 1);
 %        [alpha, counter_func] = naive_wolfe(x, n, d, func, 0.99, 1e-4, 0.999999999, counter_func, 1);
 %        [alpha, counter_func] = naive_strong_wolfe(x, n, d, func, 0.99, 1e-4, 0.9, counter_func, 1);
