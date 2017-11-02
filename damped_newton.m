@@ -4,7 +4,7 @@ function [xmin, fval, counter_iter, counter_func, time] = damped_newton(x0, n, f
     counter_func = 0;
     counter_iter = 0;
     
-    [~, ~, g, G, counter_func] = func(x, n, counter_func);
+    [~, ~, g, G, counter_func] = func(x, n, counter_func, 1);
 
     while g' * g > epsilon
         counter_iter = counter_iter + 1;
@@ -35,9 +35,9 @@ function [xmin, fval, counter_iter, counter_func, time] = damped_newton(x0, n, f
         
 %        alpha = 1e-3;  
         x = x + alpha * d;
-        [~, ~, g, G, counter_func] = func(x, n, counter_func);
+        [~, ~, g, G, counter_func] = func(x, n, counter_func, 1);
     end
     xmin = x;
-    [fval, ~, ~, ~, counter_func] = func(xmin, n, counter_func);
+    [fval, ~, ~, ~, counter_func] = func(xmin, n, counter_func, 0);
     time = cputime - time;
 end 

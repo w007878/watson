@@ -1,4 +1,5 @@
-function [f, r, grad, H, counter] = watson(x, n, counter_init)
+function [f, r, grad, H, counter] = watson(x, n, counter_init, keepH)
+    counter = counter_init + 1; 
     m = 29;
     t = (1:29) ./ 29; 
     T0 = repmat(t', 1, n - 1);
@@ -19,6 +20,9 @@ function [f, r, grad, H, counter] = watson(x, n, counter_init)
     grad(2) = grad(2) + 2 * r(31);
     
     H = zeros(n, n);
+    if keepH == 0
+        return;
+    end
     prz = (0:n-1) .* T2 - 2 * (T1 * x) .* T1;
     for a = 1:n
         for b = 1:n
@@ -30,5 +34,4 @@ function [f, r, grad, H, counter] = watson(x, n, counter_init)
     H(1, 2) = H(1, 2) - 4 * x(1);
     H(2, 1) = H(2, 1) - 4 * x(1);
     H(2, 2) = H(2, 2) + 2;
-    counter = counter_init + 1;
 end

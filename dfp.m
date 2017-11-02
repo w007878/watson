@@ -4,7 +4,7 @@ function [xmin, fval, counter_iter, counter_func, time] = dfp(x0, n, func, iter_
     counter_func = 0;
     counter_iter = 0;
     
-    [~, ~, g, G, counter_func] = func(x, n, counter_func);
+    [~, ~, g, G, counter_func] = func(x, n, counter_func, 1);
 
     H = G;
     v = eig(G);
@@ -28,7 +28,7 @@ function [xmin, fval, counter_iter, counter_func, time] = dfp(x0, n, func, iter_
 %        [alpha, counter_func] = naive_strong_wolfe(x, n, d, func, 0.99, 1e-4, 0.9, counter_func, 1);
 %        alpha = 1e-9;
         x = x + alpha * d;
-        [~, ~, g1, ~, counter_func] = func(x, n, counter_func);
+        [~, ~, g1, ~, counter_func] = func(x, n, counter_func, 0);
         y = g1 - g;
         s = alpha * d;
         g = g1;
@@ -44,6 +44,6 @@ function [xmin, fval, counter_iter, counter_func, time] = dfp(x0, n, func, iter_
         end
     end
     xmin = x;
-    [fval, ~, ~, ~, counter_func] = func(xmin, n, counter_func);
+    [fval, ~, ~, ~, counter_func] = func(xmin, n, counter_func, 0);
     time = cputime - time;    
 end
