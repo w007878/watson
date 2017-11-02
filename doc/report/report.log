@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/W32TeX) (preloaded format=xelatex 2016.4.6)  1 NOV 2017 18:05
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/W32TeX) (preloaded format=xelatex 2016.4.6)  2 NOV 2017 18:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1526,7 +1526,7 @@ LaTeX Info: Redefining \nameref on input line 18.
 . 
 . Could not resolve font FangSong/I (it probably doesn't exist).
 .................................................
-LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 41.
+LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 47.
 
 
 (f:/texlive/2015/texmf-dist/tex/latex/euenc/eu1lmtt.fd
@@ -1546,20 +1546,20 @@ File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 . - 'bold small caps'  (bx/sc) with NFSS spec.: 
 .................................................
  [4] [5] [6] [7]
-[8] [9] [10] [11] [12] [13] [14] (./report.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 484.
- [15] [16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 484.
+[8] [9] [10] [11] [12] [13] [14] (./report.bbl [15])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 526.
+ [16]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 526.
  (./report.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 484.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 484.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 484.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 526.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 526.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 526.
  ) 
 Here is how much of TeX's memory you used:
- 26709 strings out of 493632
- 508326 string characters out of 6147907
- 514390 words of memory out of 5000000
- 29845 multiletter control sequences out of 15000+600000
+ 26719 strings out of 493632
+ 508818 string characters out of 6147907
+ 514634 words of memory out of 5000000
+ 29855 multiletter control sequences out of 15000+600000
  8928 words of font info for 66 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  65i,8n,78p,10435b,462s stack positions out of 5000i,500n,10000p,200000b,80000s
